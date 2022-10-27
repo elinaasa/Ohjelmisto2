@@ -5,3 +5,16 @@
 # Kirjoita pääohjelma, jossa luot uuden auton (rekisteritunnus ABC-123, huippunopeus 142 km/h).
 # Tulosta pääohjelmassa sen jälkeen luodun auton kaikki ominaisuudet.
 
+class Auto:
+    def __init__(self, rekkari, huippunopeus):
+        self.rekkari = rekkari
+        self.huippunopeus = huippunopeus
+        self.hetknopeus = 0
+        self.kuljettumatka = 0
+
+
+auto1 = Auto("ABC-123", 142)
+
+print(f"Auton rekisteritunnus on {auto1.rekkari}, huippunopeus on  {auto1.huippunopeus}, tämän hetkinen nopeus on {auto1.hetknopeus} ja kuljettu matka on {auto1.kuljettumatka}.")
+
+
