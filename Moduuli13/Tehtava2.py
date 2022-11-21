@@ -7,7 +7,6 @@
 
 import mysql.connector
 from flask import Flask, Response
-import json
 
 yhteys = mysql.connector.connect(
     host='127.0.0.1',
@@ -18,21 +17,24 @@ yhteys = mysql.connector.connect(
     autocommit=True
 )
 
-
-def tiedot(ident):
-    sql = "SELECT name, municipality FROM airport WHERE ident = '" + ident + "'"
-    kursori = yhteys.cursor()
-    kursori.execute(sql)
-    tulos = kursori.fetchall()
-    return tulos
-
-
-tiedot = tiedot(input("Kirjoita lentoaseman ICAO-koodi: "))
-
-for t in tiedot:
-    print("Lentokenttä", t[0], " sijaitsee kunnassa ", t[1])
-
-
 app = Flask(__name__)
 
-@app.route(2)
+
+@app.route('/kentta/<ident>')
+def tiedot(ident):
+    sql = "SELECT ident, name, municipality FROM airport WHERE ident = '" + ident + "'"
+    kursori = yhteys.cursor()
+    kursori.execute(sql)
+    tulos = kursori.fetchone()
+    print(tulos)
+
+    json = {
+        "ICAO": tulos[0],
+        "Name": tulos[2],
+        "Municipality": tulos[1]
+    }
+    return json
+
+
+if __name__ == '__main__':
+    app.run(use_reloader=True, host='127.0.0.1', port=3000)
