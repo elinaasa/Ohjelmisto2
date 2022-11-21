@@ -12,9 +12,9 @@ try:
     vastaus = requests.get(URL)
     if vastaus.status_code == 200:
         json_vastaus = vastaus.json()
-        vastaus1 = (json_vastaus["main"]["temp"])
-        vastaus2 = (json_vastaus["weather"][2])
-        celcius = vastaus1 - 273.15
-        print(f"Kaupungin sää: {vastaus2} ja lämpötila {celcius:.1f} °C.")
+        lampotila = (json_vastaus["main"]["temp"])
+        kuvaus = (json_vastaus["weather"][0]["description"])
+        celcius = lampotila - 273.15
+        print(f"Kaupungin sää: {kuvaus} ja lämpötila {celcius:.1f} °C.")
 except requests.exceptions.RequestException as e:
     print("Hakua ei voitu suorittaa.")
