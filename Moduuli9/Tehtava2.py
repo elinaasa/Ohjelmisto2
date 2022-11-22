@@ -24,7 +24,8 @@ class Auto:
 
 auto1 = Auto("ABC-123", 142)
 
-print(f"Auton rekisteritunnus on {auto1.rekkari}, huippunopeus on  {auto1.huippunopeus}, tämän hetkinen nopeus on {auto1.hetknopeus} ja kuljettu matka on {auto1.kuljettumatka}.")
+print(f"Auton rekisteritunnus on {auto1.rekkari}, huippunopeus on  {auto1.huippunopeus}, tämän hetkinen nopeus on "
+      f"{auto1.hetknopeus} ja kuljettu matka on {auto1.kuljettumatka}.")
 
 auto1.kiihdyta(30)
 auto1.kiihdyta(70)
